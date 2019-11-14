@@ -1,0 +1,79 @@
+@model IEnumerable<ASPMVC.Models.Movie>
+
+
+@{
+    ViewBag.Title = "Movies";
+
+}
+
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+
+    @using (Html.BeginForm("Index", "Movies", FormMethod.Get))
+    {
+<p>
+    Original Language: @Html.DropDownList("MovieGenre", "All")
+    Title: @Html.TextBox("SearchString") <br />
+    <input type="submit" value="Search" />
+</p>
+}
+
+    <table class="sortable table">
+        
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Original_title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Release_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Original_Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Budget)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vote_average)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Original_title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Release_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Original_Language)                
+            </td>
+            <td>
+                @if (item.Budget != 0) {
+                @item.Budget.ToString("C0")}
+                @if (item.Budget == 0){
+                @item.Budget.ToString("Budget not available.")}
+            </td>
+            <td>
+                @Html.DisplayFor(modelIem => item.Vote_average)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+        }
+        
+
+    </table>
+

@@ -1,0 +1,72 @@
+@model ASPMVC.Models.Movie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this movie?</h3>
+<div>
+    <h4>@Model.Original_title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Original_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Original_title)
+        </dd>
+
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Release_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Release_date)
+        </dd>
+
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Original_Language)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Original_Language)
+        </dd>
+
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Budget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Budget.ToString("C0"))
+        </dd>
+
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vote_average)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vote_average)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
